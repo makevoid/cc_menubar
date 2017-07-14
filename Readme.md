@@ -1,3 +1,10 @@
+# CCMenubar
+
+
+Crypto Currency Menubar built in Electron.js
+
+
+
 ### Prerequisites
 
 Electron Prebuilt (`npm install electron-prebuilt -g`)
