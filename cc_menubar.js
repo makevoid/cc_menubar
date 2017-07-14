@@ -1,3 +1,4 @@
+`use strict`
 const c = console
 const menubar   = require('menubar')
 const fs        = require('fs')
@@ -6,14 +7,16 @@ const fetch     = require('electron-fetch')
 const async     = require('asyncawait/async')
 const await     = require('asyncawait/await')
 
+// const currencies = ["BTC", "LTC", "ETH"]
+// const currencies = ["BTC"]
+const currencies = ["BTC", "ETH"]
+
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=10"
 
 const mb = menubar()
 
 const main = () => {
-  c.log('app is ready')
-  // your app code here
-
+  fetchAndRender(mb)()
   setInterval(fetchAndRender(mb), 10000)
 }
 
@@ -24,7 +27,7 @@ const fetchAndRender = (mb) => {
     let texts = []
 
     currencies.forEach((currency) => {
-      let curText = `${currency.symbol}: ${currency.price_usd} (${currency.percent_change_24h}%)`
+      let curText = `${currency.symbol}: $${currency.price_usd} (${currency.percent_change_24h}%)`
       texts.push(curText)
     })
 
@@ -34,13 +37,12 @@ const fetchAndRender = (mb) => {
 }
 
 const renderMenuText = (mb, text) => {
-  let png = text2png(text, {textColor: 'darkGrey', font: "15px sans-serif"})
+  let png = text2png(text, {textColor: 'darkGrey', font: "13px sans-serif"})
   let iconPath = './img/icon.png'
   fs.writeFileSync(iconPath, png)
   mb.tray.setImage(iconPath)
 }
 
-const currencies = ["BTC", "LTC", "ETH"]
 
 const filterCurrencies = (results) => (
   results.filter((result) => (

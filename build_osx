@@ -1,0 +1,1 @@
+time npm run build && open CCMenuBar-darwin-x64/CCMenuBar.app
