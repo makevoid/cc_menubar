@@ -13,7 +13,13 @@ const currencies = ["BTC", "ETH"]
 
 const API = "https://api.coinmarketcap.com/v1/ticker/?limit=10"
 
-const mb = menubar()
+const options = {
+  width: 1,
+  height: 1,
+}
+
+const mb = menubar(options)
+
 
 const main = () => {
   fetchAndRender(mb)()
@@ -29,7 +35,7 @@ const fetchAndRender = (mb) => {
       c.log("got a network error, ignoring...")
     }
     if (!data) return
-    
+
     let currencies = filterCurrencies(data)
     let texts = []
 
