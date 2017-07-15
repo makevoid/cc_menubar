@@ -22,7 +22,14 @@ const main = () => {
 
 const fetchAndRender = (mb) => {
   return async(() => {
-    let data = await(fetchData())
+    let data
+    try {
+      data = await(fetchData())
+    } catch (e) {
+      c.log("got a network error, ignoring...")
+    }
+    if (!data) return
+    
     let currencies = filterCurrencies(data)
     let texts = []
 
@@ -31,7 +38,7 @@ const fetchAndRender = (mb) => {
       texts.push(curText)
     })
 
-    let text = texts.join("  ")
+    let text = `${texts.join("  ")} `
     renderMenuText(mb, text)
   })
 }
@@ -43,7 +50,6 @@ const renderMenuText = (mb, text) => {
   mb.tray.setImage(iconPath)
 }
 
-
 const filterCurrencies = (results) => (
   results.filter((result) => (
     currencies.includes(result.symbol)
@@ -53,26 +59,5 @@ const filterCurrencies = (results) => (
 const fetchData = () => (
   fetch(API).then(res => res.json())
 )
-
-
-
-// setIcon (type) {
-//   if (type == 'active'){
-//     this.tray.setImage(settings.get('icons.tray.active'))
-//   } else if (type == 'default'){
-//     this.tray.setImage(settings.get('icons.tray.default'))
-//   }
-// }
-//
-// var trayAnimation = setInterval(() => {
-//   setTimeout(() => {
-//     this.parent.setIcon('active')
-//   }, 300)
-//   setTimeout(() => {
-//     this.parent.setIcon('default')
-//   }, 600)
-// }, 600)
-//
-// clearInterval(trayAnimation)
 
 mb.on('ready', main)
