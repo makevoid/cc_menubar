@@ -1,9 +1,12 @@
 # CCMenubar
 
 
-Crypto Currency Menubar built in Electron.js
+Crypto Currency Menubar built in Electron.js 
 
 
+![Screenshot](http://mkvd.s3.amazonaws.com/pics/cc_menubar.png)
+
+Tracks BTC and ETC by default but you can configure it with all the most popular crypto currencies. Uses `coinmarketcap.com` API.
 
 ### Prerequisites
 
