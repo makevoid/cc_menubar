@@ -1,17 +1,18 @@
 {
   "dependencies": {
     "asyncawait": "^1.0.6",
-    "electron-fetch": "^1.0.0",
+    "electron": "^1.8.4",
+    "electron-fetch": "^1.1.0",
     "fibers": "^2.0.0",
     "menubar": "^5.2.3",
-    "text2png": "^1.0.1"
+    "text2png": "^1.1.0"
   },
   "main": "cc_menubar.js",
   "scripts": {
-    "build": "electron-packager . CCMenuBar --platform=darwin --arch=x64 --version=1.4.3 --icon=Icon.icns --overwrite",
+    "build": "electron . CCMenuBar --platform=darwin --arch=x64 --version=1.4.3 --icon=Icon.icns --overwrite",
     "start": "electron ."
   },
   "devDependencies": {
-    "electron-rebuild": "^1.5.11"
+    "electron-rebuild": "^1.7.3"
   }
 }
